@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import ImageUpload from "./ImageUpload";
 import ImagePreview from "./ImagePreview";
 import enhancedImageAPI from "../utils/enhancedImageAPI"; // Import your API function
+import DownloadButton from "./DownloadButton"; // Import your DownloadButton component
 
 const Home = () => {
   const [uploadImage, setUploadImage] = useState(null);
   const [enhancedImage, setEnhancedImage] = useState(null);
   const [loading, setLoading] = useState(false);
+
 
   const uploadImageHandler = async (file) => {
     setUploadImage(URL.createObjectURL(file));
@@ -17,6 +19,8 @@ const Home = () => {
 
       const enhancedURL=await enhancedImageAPI(file);
       setEnhancedImage(enhancedURL.image);
+     
+
       setLoading(false);
     } catch (error) {
       // code to handle the error and show message
@@ -37,6 +41,7 @@ const Home = () => {
         uploaded={uploadImage}
         enhanced={enhancedImage}
       />
+      <DownloadButton loading={loading} enhanced={enhancedImage} />
     </>
   );
 };

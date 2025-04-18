@@ -60,7 +60,7 @@ const fetchImage = async (taskId) => {
   if (!data?.data) {
     throw new Error("Failed to fetch Enhanced Image");
   }
-
+  console.log("Data", data);
   return data.data;
 };
 
